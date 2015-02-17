@@ -8,17 +8,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import java.lang.Object.*;
-
+import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
-    String[] subjects;
+    ArrayList<String> subjects;
+
+    static QuizApp app = QuizApp.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        subjects = new String[] {"Math", "Physics", "Marvel Super Heroes"};
+        subjects = app.getRepository().initializeSubjects();
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
@@ -31,11 +33,14 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long d) {
                 Intent nextActivity = new Intent(MainActivity.this, SecondActivity.class);
 
-                String subject = subjects[position];
-               // TextView test = (TextView) findViewById(R.id.test);
-               // test.setText(subject);
-                nextActivity.putExtra("subject", subject);
-
+                String subject = subjects.get(position);
+                if(subject.contains("Math")) {
+                    nextActivity.putExtra("subject", "Math");
+                } else if(subject.contains("Physics")) {
+                    nextActivity.putExtra("subject", "Physics");
+                } else {
+                    nextActivity.putExtra("subject", "Marvel Super Heroes");
+                }
 
           startActivity(nextActivity);
           finish();
@@ -43,6 +48,8 @@ public class MainActivity extends ActionBarActivity {
 
         });
     }
+
+
 
 
         @Override

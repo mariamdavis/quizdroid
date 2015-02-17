@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.washington.mhd94.quizdroid" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
+        android:name=".QuizApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
