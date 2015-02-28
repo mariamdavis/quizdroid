@@ -8,6 +8,8 @@ import java.util.Queue;
  */
 public interface TopicRepository{
 
+   // public ArrayList<String> getTopics();
+   // public void setTopics();
     public String getTopic();
     public void setTopic(String topic);
     public String getShortDescription();
